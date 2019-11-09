@@ -222,7 +222,7 @@ class Game(commands.Cog):
                 self.accept_response = False
                     
                 await asyncio.sleep(3)
-                await channel.send("Okay, let's jump right into the voting round. Pick your favorite response by smacking that MF like button.")
+                await channel.send("Okay, let's jump right into the voting round. Pick your favorite response by smacking that like button.")
                 await asyncio.sleep(3)
                 await self.vote()
 
