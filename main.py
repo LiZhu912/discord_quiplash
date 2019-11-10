@@ -3,7 +3,7 @@ from discord.ext import commands
 import json
 import praw
 
-token = 'NTU2OTI5NDc2Mzc0NjkxODQw.XNBqJw.qwoQXsv2dkhYpqvNFQjXzpzSH4Q'
+token = secrets['token']
 
 bot = commands.Bot(command_prefix='$')
 
