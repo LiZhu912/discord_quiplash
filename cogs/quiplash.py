@@ -88,7 +88,6 @@ class Game(commands.Cog):
                     self.prompt_dict[rounds][prompt_num] = {}
                     continue
 
-            print(4)
 
             player_selection1= [*self.players]
             player_selection2= [*self.players]
@@ -100,14 +99,13 @@ class Game(commands.Cog):
                 if not submission.stickied and '_' in submission.title and not text_has_emoji(submission.title):
                     if submission.title not in cp:
                         #cp.append(submission.title)
-                        print(6)
-                        
+                   
                         # Assign first player to a prompt.
                         selected_player1 = rand.choice(player_selection1)
                         player_selection1.remove(selected_player1)
                         self.players[selected_player1]['prompts'][self.round]['prompt'].append(submission.title)
                         self.players[selected_player1]['prompts'][self.round]['prompt_num'].append(count)
-                        print(7)
+
                         
                         # Assign second player to a prompt.
                         selected_player2 = rand.choice(player_selection2)
@@ -118,10 +116,8 @@ class Game(commands.Cog):
                         player_selection2.remove(selected_player2)
                         self.players[selected_player2]['prompts'][self.round]['prompt'].append(submission.title)
                         self.players[selected_player2]['prompts'][self.round]['prompt_num'].append(count)
-                        print(8)
                         
                         self.prompt_dict[self.round][count] = {'prompt':submission.title,'players':{selected_player1:[], selected_player2:[]}}
-                        print(9)
                         print(len_players)
                         if count == len_players:
                             break
@@ -130,7 +126,6 @@ class Game(commands.Cog):
 
 
     async def send_prompt(self):
-        print(10)
         for player in self.players:
             
 
@@ -147,7 +142,6 @@ class Game(commands.Cog):
                 embed.set_footer(text='points are tripled')
                 
             await player.send(content='ROUND BEGIN!', embed=embed)
-            print(11)
             if self.round == 4:
                 self.game_over()
 
@@ -201,15 +195,12 @@ class Game(commands.Cog):
             channel = self.channel
             await channel.send('A game has been started')
             len_players = self.get_len_players()
-            print(1)
             subreddit = self.instanceReddit(len_players)
-            print(2)
             print(self.game_on)
             while self.game_on:
 
                 self.get_prompts(len_players, subreddit)
-                print(3)
-                
+
                 await self.send_prompt()
                 
                 self.accept_response = True
